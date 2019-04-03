@@ -11,6 +11,7 @@ public:
 
 	}
 };
+
 KRYT::Application* KRYT::CreateApplication() {
 	return new Sandbox();
  }

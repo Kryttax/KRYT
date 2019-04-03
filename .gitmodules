@@ -1,0 +1,3 @@
+[submodule "KRYT/vendor/spdlog"]
+	path = KRYT/vendor/spdlog
+	url = https://github.com/gabime/spdlog
