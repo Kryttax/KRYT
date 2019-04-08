@@ -7,6 +7,14 @@
 
 namespace KRYT {
 
+	/*
+	Events dispatched here are currently blocking. This means that when an event occurs it
+	inmediately gets dispatched and must be dealt with right in that moment.
+
+	In the future, a better strategy might be to buffer events in an event bus and process
+	them during the "event" part of the update stage.
+	*/
+
 	enum class EventType
 	{
 		None = 0,
