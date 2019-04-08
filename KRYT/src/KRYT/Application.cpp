@@ -1,3 +1,4 @@
+#include "KRpch.h"
 #include "Application.h"
 
 #include "KRYT/Events/ApplicationEvent.h"

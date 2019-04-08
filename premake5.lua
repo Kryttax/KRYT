@@ -20,6 +20,9 @@ project "KRYT"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "KRpch.h"
+	pchsource "KRYT/src/KRpch.cpp"
+	
 	files 
 	{
 		"%{prj.name}/src/**.h",
