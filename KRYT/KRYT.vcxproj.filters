@@ -4,6 +4,9 @@
     <Filter Include="KRYT">
       <UniqueIdentifier>{8F98877C-7BCF-880D-24BC-6E1010D2040F}</UniqueIdentifier>
     </Filter>
+    <Filter Include="KRYT\Events">
+      <UniqueIdentifier>{932D4819-FFE2-C00E-88D7-BAE5F48BB712}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\KRYT.h" />
@@ -15,6 +18,18 @@
     </ClInclude>
     <ClInclude Include="src\KRYT\EntryPoint.h">
       <Filter>KRYT</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KRYT\Events\ApplicationEvent.h">
+      <Filter>KRYT\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KRYT\Events\Event.h">
+      <Filter>KRYT\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KRYT\Events\KeyEvent.h">
+      <Filter>KRYT\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KRYT\Events\MouseEvent.h">
+      <Filter>KRYT\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\KRYT\Log.h">
       <Filter>KRYT</Filter>

@@ -12,3 +12,5 @@
 #else
 	#error KRYT only supports Windows
 #endif // KR_PLATFORM_WINDOWS
+
+#define BIT(x) (1 << x)

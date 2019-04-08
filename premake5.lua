@@ -1,3 +1,4 @@
+
 workspace "KRYT"
 	architecture"x64"
 	startproject "Sandbox"
@@ -27,7 +28,8 @@ project "KRYT"
 
 	includedirs
 	{
-		"%{prj.name}/vendor/spdlog/include;"
+		"%{prj.name}/src",
+		"%{prj.name}/vendor/spdlog/include"
 	}
 
 	filter "system:windows"
@@ -75,7 +77,7 @@ project "Sandbox"
 
 	includedirs 
 	{
-		"KRYT/vendor/spdlog/include;",
+		"KRYT/vendor/spdlog/include",
 		"KRYT/src"
 	}
 
