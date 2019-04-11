@@ -1,3 +1,6 @@
 [submodule "KRYT/vendor/spdlog"]
 	path = KRYT/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "KRYT/vendor/GLFW"]
+	path = KRYT/vendor/GLFW
+	url = https://github.com/TheCherno/glfw

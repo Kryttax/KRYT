@@ -7,6 +7,12 @@
     <Filter Include="KRYT\Events">
       <UniqueIdentifier>{932D4819-FFE2-C00E-88D7-BAE5F48BB712}</UniqueIdentifier>
     </Filter>
+    <Filter Include="KRYT\Platform">
+      <UniqueIdentifier>{C3E527A8-2FA6-A3DE-F8E0-EC5B6460E8BA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="KRYT\Platform\Windows">
+      <UniqueIdentifier>{FDA21471-690F-D06B-3203-68C99E2EF2D3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\KRYT.h" />
@@ -34,6 +40,12 @@
     <ClInclude Include="src\KRYT\Log.h">
       <Filter>KRYT</Filter>
     </ClInclude>
+    <ClInclude Include="src\KRYT\Platform\Windows\WindowsWindow.h">
+      <Filter>KRYT\Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\KRYT\Window.h">
+      <Filter>KRYT</Filter>
+    </ClInclude>
     <ClInclude Include="src\KRpch.h" />
   </ItemGroup>
   <ItemGroup>
@@ -42,6 +54,9 @@
     </ClCompile>
     <ClCompile Include="src\KRYT\Log.cpp">
       <Filter>KRYT</Filter>
+    </ClCompile>
+    <ClCompile Include="src\KRYT\Platform\Windows\WindowsWindow.cpp">
+      <Filter>KRYT\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\KRpch.cpp" />
   </ItemGroup>
