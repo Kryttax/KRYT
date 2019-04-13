@@ -1,10 +1,17 @@
 #include "KRpch.h"
 #include "WindowsWindow.h"
-
+#include "KRYT/Events/MouseEvent.h"
+#include "KRYT/Events/KeyEvent.h"
+#include "KRYT/Events/ApplicationEvent.h"
 
 namespace KRYT
 {
 	static bool s_GLFWInitialized = false;
+
+	static void GLFWErrorCallback(int error, const char* descr)
+	{
+		KR_CORE_ERROR("GLFW Error: ({0}): {1}", error, descr);
+	}
 
 	Window* Window::Create(const WindowProps& props)
 	{
@@ -34,7 +41,7 @@ namespace KRYT
 		{
 			int success = glfwInit();
 			KR_CORE_ASSERT(success, "Could not Initialize GLFW");
-
+			glfwSetErrorCallback(GLFWErrorCallback);
 			s_GLFWInitialized = true;
 		}
 
@@ -42,6 +49,88 @@ namespace KRYT
 		glfwMakeContextCurrent(m_Window);
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
+
+		// Set GLFW	callbacks
+		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height)
+		{
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+			data.Width = width;
+			data.Height = height;
+
+			WindowResizeEvent evnt(width, height);
+			data.EventCallback(evnt);
+		});
+
+		glfwSetWindowCloseCallback(m_Window, [](GLFWwindow* window)
+		{
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+			WindowCloseEvent evnt;
+			data.EventCallback(evnt);
+		});
+
+		glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int key, int scancode, int action, int mods)
+		{
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+			switch (action)
+			{
+				case GLFW_PRESS:
+				{
+					KeyPressedEvent evnt(key, 0);
+					data.EventCallback(evnt);
+					break;
+				}
+				case GLFW_RELEASE:
+				{
+					KeyReleasedEvent evnt(key);
+					data.EventCallback(evnt);
+					break;
+				}
+				case GLFW_REPEAT:
+				{
+					KeyPressedEvent evnt(key, 1);
+					data.EventCallback(evnt);
+					break;
+				}
+			}
+		});
+
+		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods)
+		{
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+			switch (action)
+			{
+			case GLFW_PRESS:
+				{
+					MouseButtonPressedEvent evnt(button);
+					data.EventCallback(evnt);
+					break;
+				}
+			case GLFW_RELEASE:
+				{
+					MouseButtonReleasedEvent evnt(button);
+					data.EventCallback(evnt);
+					break;
+				}
+			}
+		});
+
+		glfwSetScrollCallback(m_Window, [](GLFWwindow* window, double xOffset, double yOffset)
+		{
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+			MouseScrolledEvent evnt((float)xOffset, (float)yOffset);
+			data.EventCallback(evnt);
+		});
+
+		glfwSetCursorPosCallback(m_Window, [](GLFWwindow* window, double xPos, double yPos)
+		{
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+			MouseMovedEvent evnt((float)xPos, (float)yPos);
+			data.EventCallback(evnt);
+		});
 	}
 
 	void WindowsWindow::Shutdown()
@@ -61,7 +150,7 @@ namespace KRYT
 			glfwSwapInterval(1);
 		else
 			glfwSwapInterval(0);
-		
+
 		m_Data.VSync = enabled;
 	}
 

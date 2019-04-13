@@ -1,5 +1,6 @@
 #pragma once
 
+#include "KRpch.h"
 #include "KRYT/Core.h"
 
 #include <string>

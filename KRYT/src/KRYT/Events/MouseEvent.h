@@ -7,10 +7,6 @@ namespace KRYT {
 	class KRYT_API MouseMovedEvent : public Event
 	{
 	public:
-		inline int GetKeyCode() const { return m_KeyCode; }
-
-
-	protected:
 		MouseMovedEvent(float x, float y)
 			: m_MouseX(x), m_MouseY(y) {};
 
@@ -36,10 +32,6 @@ namespace KRYT {
 	class KRYT_API MouseScrolledEvent : public Event
 	{
 	public:
-		inline int GetKeyCode() const { return m_KeyCode; }
-
-
-	protected:
 		MouseScrolledEvent(float xOffset, float yOffset)
 			: m_XOffset(xOffset), m_YOffset(yOffset) {};
 
